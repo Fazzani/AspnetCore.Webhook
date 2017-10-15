@@ -7,10 +7,12 @@ init:
     git config --global core.autocrlf true
 
     dotnet --version
+
+    dotnet restore  --verbosity m
 - ps: $Env:LABEL = "beta" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 dotnet_csproj:
   patch: true
-  file: '**\*.csproj'
+  file: '**\AspNet.Core.Webhooks.csproj'
   version: '{version}'
   package_version: '{version}'
 environment:
@@ -28,16 +30,10 @@ build_script:
 
     dotnet nuget push .\AspNet.Core.Webhooks\artifacts\**\*.* -k ux16b846ggi3wy8arhuyxaqx -s https://ci.appveyor.com/nuget/fazzani/api/v2/package
 
-    ls -l ./AspNet.Core.Webhooks
-
     echo "directory info"
-
-    ls -l
 artifacts:
   - path: '.\AspNet.Core.Webhooks\artifacts\*.nupkg'
 test_script: >-
-   dotnet restore ./UnitTest.Webhooks/UnitTest.Webhooks.csproj --verbosity m
-
    cd ./UnitTest.Webhooks/ && ls -l
 
    dotnet xunit
