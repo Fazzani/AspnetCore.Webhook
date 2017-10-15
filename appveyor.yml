@@ -22,10 +22,10 @@ nuget:
   project_feed: true
 build_script:
 - cmd: >-
-    dotnet publish -c Release ./AspNet.Core.Webhooks.csproj --verbosity m -o artifacts
+    dotnet publish -c Release ./AspNet.Core.Webhooks/AspNet.Core.Webhooks.csproj --verbosity m -o artifacts
 
-    dotnet pack ./AspNet.Core.Webhooks.csproj -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts
+    dotnet pack ./AspNet.Core.Webhooks/AspNet.Core.Webhooks.csproj -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts
 
     dotnet nuget push artifacts\**\*.* -k ux16b846ggi3wy8arhuyxaqx -s https://ci.appveyor.com/nuget/fazzani/api/v2/package
 artifacts:
-  - path: 'artifacts\*.nupkg'
+  - path: '\AspNet.Core.Webhooks\artifacts\*.nupkg'
