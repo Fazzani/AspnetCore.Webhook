@@ -28,8 +28,13 @@ build_script:
 
     dotnet nuget push artifacts\**\*.* -k ux16b846ggi3wy8arhuyxaqx -s https://ci.appveyor.com/nuget/fazzani/api/v2/package
 
+    ls -l ./AspNet.Core.Webhooks
+
+    echo "directory info"
+
+    ls -l
 artifacts:
-  - path: 'artifacts\*.nupkg'
+  - path: '\AspNet.Core.Webhooks\artifacts\*.nupkg'
 test_script: >-
    dotnet restore ./UnitTest.Webhooks/UnitTest.Webhooks.csproj --verbosity m
    cd ./UnitTest.Webhooks/
