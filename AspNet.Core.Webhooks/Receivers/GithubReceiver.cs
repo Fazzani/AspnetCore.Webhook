@@ -25,7 +25,7 @@ namespace AspNet.Core.Webhooks.Receivers
                 && context.Request.Path.HasValue && context.Request.Path.Value.StartsWith("/webhook/github");
 
         public override string GetSignature(HttpContext httpContext) =>
-            ((string)(HttpContext.Request.Headers.FirstOrDefault(x => x.Key.Equals(KeyToken)).Value)).Substring(Sha1Prefix.Length);
+            ((string)(HttpContext.Request.Headers.FirstOrDefault(x => x.Key.Equals(KeyToken)).Value))?.Substring(Sha1Prefix.Length);
 
         /// <summary>
         /// Assert matching signature
@@ -50,7 +50,7 @@ namespace AspNet.Core.Webhooks.Receivers
             }
             else
             {
-                throw new WebHookNotSignedException("WebHook must be signed");
+                throw new WebHookMissedSignatureException("WebHook must be signed");
             }
             return true;
         }

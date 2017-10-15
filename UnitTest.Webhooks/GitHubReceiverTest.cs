@@ -52,6 +52,12 @@ namespace UnitTest.Webhooks
             Assert.Throws<WebHookBadSignatureExpcetion>(() => _githubReceiver.AssertSignature(_httpContextMock));
         }
 
+        [Fact]
+        public void WebHookMissedSignatureException()
+        {
+            _httpContextMock.Request.Headers.Remove("X-Hub-Signature");
+            Assert.Throws<WebHookMissedSignatureException>(() => _githubReceiver.AssertSignature(_httpContextMock));
+        }
     }
 
 }

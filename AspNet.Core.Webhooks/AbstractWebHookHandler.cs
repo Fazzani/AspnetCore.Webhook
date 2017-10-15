@@ -85,7 +85,7 @@ namespace AspNet.Core.Webhooks
             }
             else
             {
-                throw new WebHookNotSignedException("WebHook must be signed");
+                throw new WebHookMissedSignatureException("WebHook must be signed");
             }
             return true;
         }

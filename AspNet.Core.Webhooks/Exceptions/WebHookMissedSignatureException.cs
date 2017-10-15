@@ -4,9 +4,9 @@ using System.Text;
 
 namespace AspNet.Core.Webhooks.Exceptions
 {
-    public class WebHookNotSignedException : WebHookException
+    public class WebHookMissedSignatureException : WebHookException
     {
-        public WebHookNotSignedException(string message) : base(message)
+        public WebHookMissedSignatureException(string message) : base(message)
         {
 
         }

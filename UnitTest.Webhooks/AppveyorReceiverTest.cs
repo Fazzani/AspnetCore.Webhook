@@ -50,5 +50,12 @@ namespace UnitTest.Webhooks
             _httpContextMock.Request.Headers["X-Hub-Signature"] = "D6B45E6C267330022E1E4FA70D88134A7E5B25A0499541A40A48BD53C5980A08";
             Assert.Throws<WebHookBadSignatureExpcetion>(() => _appveyorReceiver.AssertSignature(_httpContextMock));
         }
+
+        [Fact]
+        public void WebHookMissedSignatureException()
+        {
+            _httpContextMock.Request.Headers.Remove("X-Hub-Signature");
+            Assert.Throws<WebHookMissedSignatureException>(() => _appveyorReceiver.AssertSignature(_httpContextMock));
+        }
     }
 }
