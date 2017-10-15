@@ -1,0 +1,31 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Release
+clone_depth: 5
+init:
+- cmd: >-
+    git config --global core.autocrlf true
+
+    dotnet --version
+- ps: $Env:LABEL = "beta" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+environment:
+  ASPNETCORE_ENVIRONMENT: Production
+matrix:
+  fast_finish: true
+nuget:
+  account_feed: true
+  project_feed: true
+build_script:
+- cmd: >-
+    dotnet publish -c Release ./AspNet.Core.Webhooks.csproj --verbosity m -o artifacts
+
+    dotnet pack ./AspNet.Core.Webhooks.csproj -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts
+
+    dotnet nuget push artifacts\**\*.* -k ux16b846ggi3wy8arhuyxaqx -s https://ci.appveyor.com/nuget/fazzani/api/v2/package
+artifacts:
+  - path: 'artifacts\*.nupkg'
