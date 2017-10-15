@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNet.Core.Webhooks", "Asp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4B94501F-8837-439F-8F85-9A7E6377B0B7}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
+		NuGet.Config = NuGet.Config
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
