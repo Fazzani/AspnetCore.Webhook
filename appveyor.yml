@@ -38,6 +38,6 @@ artifacts:
 test_script: >-
    dotnet restore ./UnitTest.Webhooks/UnitTest.Webhooks.csproj --verbosity m
 
-   cd ./UnitTest.Webhooks/
+   cd ./UnitTest.Webhooks/ && ls -l
 
    dotnet xunit
