@@ -10,6 +10,7 @@
 1. Add this code in ConfigureServices method of Startup class
 <pre>
 <code>
+  services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
   services.UseGithubWebhook(() => new GithubOptions
             {
                 ApiKey = "test",

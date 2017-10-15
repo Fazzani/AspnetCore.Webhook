@@ -3356,6 +3356,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+        "C:\\Users\\Heni\\Source\\Repos\\AspNet.Core.Webhooks\\NuGet.Config",
         "C:\\Users\\Heni\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3366,6 +3367,7 @@
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Users\\Heni\\.dotnet\\NuGetFallbackFolder": {},
         "https://api.nuget.org/v3/index.json": {},
+        "https://ci.appveyor.com/nuget/fazzani": {},
         "https://dotnet.myget.org/F/aspnetcore-ci-dev/api/v3/index.json": {},
         "https://www.myget.org/F/aspnet-contrib/api/v3/index.json": {}
       },
