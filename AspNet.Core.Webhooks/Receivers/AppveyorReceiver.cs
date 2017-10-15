@@ -11,7 +11,7 @@ namespace AspNet.Core.Webhooks.Receivers
     {
         public override string KeyToken { get; set; }
 
-        public AppveyorReceiver(IHttpContextAccessor httpContext, AppveyorOptions appveyorOptions) : base(httpContext, appveyorOptions)
+        public AppveyorReceiver(AppveyorOptions appveyorOptions) : base( appveyorOptions)
         {
             KeyToken = "X-Hub-Signature";
         }
@@ -21,7 +21,7 @@ namespace AspNet.Core.Webhooks.Receivers
                 && context.Request.Path.HasValue && context.Request.Path.Value.StartsWith("/webhook/appveyor");
 
         public override string GetSignature(HttpContext httpContext) =>
-            HttpContext.Request.Headers.FirstOrDefault(x => x.Key.Equals(KeyToken)).Value;
+            httpContext.Request.Headers.FirstOrDefault(x => x.Key.Equals(KeyToken)).Value;
     }
 
     public class AppveyorOptions : WebhookOptions<AppveyorWebHookMessage>

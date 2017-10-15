@@ -20,30 +20,30 @@ namespace AspNet.Core.Webhooks
         protected readonly TOptions _options;
         protected string _requestBody;
         public abstract string KeyToken { get; set; }
-        public HttpContext HttpContext { get; }
+       // public HttpContext HttpContext { get; }
 
-        public AbstractWebHookHandler(IHttpContextAccessor httpContext, TOptions options)
+        public AbstractWebHookHandler(TOptions options)
         {
-            HttpContext = httpContext.HttpContext;
+           // HttpContext = httpContext.HttpContext;
             _options = options;
             _requestBody = string.Empty;
         }
 
 
-        public async Task<string> RequestBody()
+        public async Task<string> RequestBody(HttpContext httpContext)
         {
-            if (HttpContext.Request.Body.CanRead && string.IsNullOrEmpty(_requestBody))
-                _requestBody = await new StreamReader(HttpContext.Request.Body, Encoding.UTF8, true, 4096, false).ReadToEndAsync();
+            if (httpContext.Request.Body.CanRead && string.IsNullOrEmpty(_requestBody))
+                _requestBody = await new StreamReader(httpContext.Request.Body, Encoding.UTF8, true, 4096, false).ReadToEndAsync();
             return _requestBody;
         }
 
         /// <summary>
         /// The action trigred when Webhook handled
         /// </summary>
-        public virtual void Invoke() =>
-          HttpContext.Response.OnStarting(() => Task.Run(() => {
-              webHookMessage = (TWebHookMessage)JsonConvert.DeserializeObject(RequestBody().GetAwaiter().GetResult(), typeof(TWebHookMessage));
-              _options.WebHookAction?.Invoke(HttpContext, webHookMessage);
+        public virtual void Invoke(HttpContext httpContext) =>
+          httpContext.Response.OnStarting(() => Task.Run(() => {
+              webHookMessage = (TWebHookMessage)JsonConvert.DeserializeObject(RequestBody(httpContext).GetAwaiter().GetResult(), typeof(TWebHookMessage));
+              _options.WebHookAction?.Invoke(httpContext, webHookMessage);
           }));
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace AspNet.Core.Webhooks
             var signature = GetSignature(httpContext);
             if (!string.IsNullOrEmpty(signature))
             {
-                var requestBody = RequestBody().GetAwaiter().GetResult();
+                var requestBody = RequestBody(httpContext).GetAwaiter().GetResult();
 
                 var hash = new HMACSHA256(Encoding.ASCII.GetBytes(_options.ApiKey))
                     .ComputeHash(Encoding.ASCII.GetBytes(requestBody))

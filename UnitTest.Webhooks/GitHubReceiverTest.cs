@@ -28,7 +28,7 @@ namespace UnitTest.Webhooks
             var bytes = Encoding.ASCII.GetBytes(playload);
             _httpContextMock.Request.Body = new MemoryStream(bytes);
             httpContextAccessorMock.Setup(x => x.HttpContext).Returns(_httpContextMock);
-            _githubReceiver = new GithubReceiver(httpContextAccessorMock.Object, new GithubOptions
+            _githubReceiver = new GithubReceiver(new GithubOptions
             {
                 ApiKey = ApiKey,
                 WebHookAction = (ctx, message) =>

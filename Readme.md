@@ -4,8 +4,12 @@
 <p>Generic AspNet Webhook middleware.</p>
 <p>A Github and appveyor was implemented by default.</p>
 
-## Setup
+## Nuget Gallery
+
+websocket-sharp is available on the NuGet Gallery, as still a prerelease version.
 <pre>Install-Package AspNet.Core.Webhooks -Version 1.0.0</pre>
+
+## Usage
 
 1. Add this code in ConfigureServices method of Startup class
 <pre>

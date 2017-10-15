@@ -36,10 +36,10 @@ namespace AspNet.Core.Webhooks
                 {
                     try
                     {
-                        var body = await handler.RequestBody();
+                        var body = await handler.RequestBody(context);
                         await ThrowBadRequestIfNull(context, body, ct);
                         handler.AssertSignature(context);
-                        handler.Invoke();
+                        handler.Invoke(context);
                     }
                     catch (Exception ex)
                     {

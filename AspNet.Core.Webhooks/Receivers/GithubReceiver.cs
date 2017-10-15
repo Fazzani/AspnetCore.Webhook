@@ -14,8 +14,8 @@ namespace AspNet.Core.Webhooks.Receivers
         private const string Sha1Prefix = "sha1=";
         public override string KeyToken { get; set; }
 
-        public GithubReceiver(IHttpContextAccessor httpContext, GithubOptions githubOptions) 
-            : base(httpContext, githubOptions)
+        public GithubReceiver( GithubOptions githubOptions) 
+            : base(githubOptions)
         {
             KeyToken = "X-Hub-Signature";
         }
@@ -25,7 +25,7 @@ namespace AspNet.Core.Webhooks.Receivers
                 && context.Request.Path.HasValue && context.Request.Path.Value.StartsWith("/webhook/github");
 
         public override string GetSignature(HttpContext httpContext) =>
-            ((string)(HttpContext.Request.Headers.FirstOrDefault(x => x.Key.Equals(KeyToken)).Value))?.Substring(Sha1Prefix.Length);
+            ((string)(httpContext.Request.Headers.FirstOrDefault(x => x.Key.Equals(KeyToken)).Value))?.Substring(Sha1Prefix.Length);
 
         /// <summary>
         /// Assert matching signature
@@ -37,7 +37,7 @@ namespace AspNet.Core.Webhooks.Receivers
             var signature = GetSignature(httpContext);
             if (!string.IsNullOrEmpty(signature))
             {
-                var requestBody = RequestBody().GetAwaiter().GetResult();
+                var requestBody = RequestBody(httpContext).GetAwaiter().GetResult();
 
                 var hash = new HMACSHA1(Encoding.ASCII.GetBytes(_options.ApiKey))
                     .ComputeHash(Encoding.ASCII.GetBytes(requestBody))

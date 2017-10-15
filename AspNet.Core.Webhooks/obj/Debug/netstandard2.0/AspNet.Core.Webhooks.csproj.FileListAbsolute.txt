@@ -24,3 +24,4 @@ C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\n
 C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.AssemblyInfo.cs
 C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.dll
 C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.pdb
+C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.csprojResolveAssemblyReference.cache

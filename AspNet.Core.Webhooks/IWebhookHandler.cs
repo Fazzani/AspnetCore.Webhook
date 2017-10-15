@@ -12,7 +12,7 @@ namespace AspNet.Core.Webhooks
         /// <summary>
         /// Webhook Action
         /// </summary>
-        void Invoke();
+        void Invoke(HttpContext httpContext);
 
         /// <summary>
         /// Match webhook Request 
@@ -43,6 +43,6 @@ namespace AspNet.Core.Webhooks
         /// Get body request
         /// </summary>
         /// <returns></returns>
-        Task<string> RequestBody();
+        Task<string> RequestBody(HttpContext httpContext);
     }
 }

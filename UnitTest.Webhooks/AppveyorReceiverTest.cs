@@ -27,7 +27,7 @@ namespace UnitTest.Webhooks
             var bytes = Encoding.ASCII.GetBytes(playload);
             _httpContextMock.Request.Body = new MemoryStream(bytes);
             httpContextAccessorMock.Setup(x => x.HttpContext).Returns(_httpContextMock);
-            _appveyorReceiver = new AppveyorReceiver(httpContextAccessorMock.Object, new AppveyorOptions
+            _appveyorReceiver = new AppveyorReceiver(new AppveyorOptions
             {
                 ApiKey = ApiKey,
                 WebHookAction = (ctx, message) =>
