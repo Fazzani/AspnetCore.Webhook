@@ -27,8 +27,9 @@ build_script:
     dotnet pack ./AspNet.Core.Webhooks/AspNet.Core.Webhooks.csproj -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts
 
     dotnet nuget push artifacts\**\*.* -k ux16b846ggi3wy8arhuyxaqx -s https://ci.appveyor.com/nuget/fazzani/api/v2/package
+
 artifacts:
-  - path: '\AspNet.Core.Webhooks\artifacts\*.nupkg'
+  - path: 'artifacts\*.nupkg'
 test_script: >-
    dotnet restore ./UnitTest.Webhooks/UnitTest.Webhooks.csproj --verbosity m
    cd ./UnitTest.Webhooks/
