@@ -47,3 +47,4 @@
 * config from settings files
 * Log
 * Auto upload to nuget
+* Add capability to user app.UseMiddleware<T>

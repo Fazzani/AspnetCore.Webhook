@@ -29,6 +29,7 @@ namespace AspNet.Core.Webhooks
                 throw new ArgumentNullException(nameof(context));
             }
 
+            CancellationToken ct = context.RequestAborted;
             using (var handler = (IWebHookHandler)context.RequestServices.GetService(_webhookHandler))
             {
                 if (handler != null && handler.IsWebHookRequest(context))
@@ -36,13 +37,13 @@ namespace AspNet.Core.Webhooks
                     try
                     {
                         var body = await handler.RequestBody();
-                        await ThrowBadRequestIfNull(context, body, CancellationToken.None);
+                        await ThrowBadRequestIfNull(context, body, ct);
                         handler.AssertSignature(context);
                         handler.Invoke();
                     }
                     catch (Exception ex)
                     {
-                        await ThrowBadRequestIfNull(context, null, CancellationToken.None, ex.Message);
+                        await ThrowBadRequestIfNull(context, null, ct, ex.Message);
                     }
                 }
             }
