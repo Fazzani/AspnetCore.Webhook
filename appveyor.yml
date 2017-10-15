@@ -7,8 +7,6 @@ init:
     git config --global core.autocrlf true
 
     dotnet --version
-
-    dotnet restore  --verbosity m
 - ps: $Env:LABEL = "beta" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 dotnet_csproj:
   patch: true
@@ -24,6 +22,8 @@ nuget:
   project_feed: true
 build_script:
 - cmd: >-
+    dotnet restore  --verbosity m
+
     dotnet publish -c Release ./AspNet.Core.Webhooks/AspNet.Core.Webhooks.csproj --verbosity m -o artifacts
 
     dotnet pack ./AspNet.Core.Webhooks/AspNet.Core.Webhooks.csproj -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts
