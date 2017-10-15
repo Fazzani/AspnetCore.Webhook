@@ -16,3 +16,11 @@ C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.
 C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.AssemblyInfo.cs
 C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.dll
 C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.pdb
+C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\bin\Debug\netstandard2.0\AspNet.Core.Webhooks.deps.json
+C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\bin\Debug\netstandard2.0\AspNet.Core.Webhooks.dll
+C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\bin\Debug\netstandard2.0\AspNet.Core.Webhooks.pdb
+C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.csproj.CoreCompileInputs.cache
+C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.AssemblyInfoInputs.cache
+C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.AssemblyInfo.cs
+C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.dll
+C:\Users\Heni\Source\Repos\AspNet.Core.Webhooks\AspNet.Core.Webhooks\obj\Debug\netstandard2.0\AspNet.Core.Webhooks.pdb

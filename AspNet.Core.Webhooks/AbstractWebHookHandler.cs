@@ -1,4 +1,5 @@
-﻿using AspNet.Core.Webhooks.Receivers;
+﻿using AspNet.Core.Webhooks.Exceptions;
+using AspNet.Core.Webhooks.Receivers;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -77,14 +78,14 @@ namespace AspNet.Core.Webhooks
                     .ComputeHash(Encoding.ASCII.GetBytes(requestBody))
                     .Aggregate(string.Empty, (s, e) => s + String.Format("{0:X2}", e), s => s);
 
-                if (!hash.Equals(signature))
+                if (!hash.Equals(signature, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    throw new Exception("WebHook Signatures didn't match!");
+                    throw new WebHookBadSignatureExpcetion("WebHook Signatures didn't match!");
                 }
             }
             else
             {
-                throw new Exception("WebHook must be signed");
+                throw new WebHookNotSignedException("WebHook must be signed");
             }
             return true;
         }

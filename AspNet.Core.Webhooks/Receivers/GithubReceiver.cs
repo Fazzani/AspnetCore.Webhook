@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Cryptography;
+using AspNet.Core.Webhooks.Exceptions;
 
 namespace AspNet.Core.Webhooks.Receivers
 {
@@ -42,14 +43,14 @@ namespace AspNet.Core.Webhooks.Receivers
                     .ComputeHash(Encoding.ASCII.GetBytes(requestBody))
                     .Aggregate(string.Empty, (s, e) => s + String.Format("{0:x2}", e), s => s);
 
-                if (!hash.Equals(signature))
+                if (!hash.Equals(signature, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    throw new Exception("WebHook Signatures didn't match!");
+                    throw new WebHookBadSignatureExpcetion("WebHook Signatures didn't match!");
                 }
             }
             else
             {
-                throw new Exception("WebHook must be signed");
+                throw new WebHookNotSignedException("WebHook must be signed");
             }
             return true;
         }
